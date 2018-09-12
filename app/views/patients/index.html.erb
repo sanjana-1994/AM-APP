@@ -1,0 +1,12 @@
+<div style="text-align: center; margin-top: 50px;">
+<%= form_for(@new_patient) do |f| %>
+NAME: <%= f.text_field :name %><br>
+BIRTH DATE: <%= f.date_field :birth_date %><br>
+PATIENT IMAGE: <%= f.file_field :image_loc %><br>
+MEDICAL REPORT: <%= f.file_field :medical_report_loc %><br>
+AGE: <%= f.number_field :age %><br>
+GENDER: <%= f.text_field :gender %><br>
+<%= f.submit "Submit" %>
+<button><%= link_to 'Cancel', root_path() %></button>
+<% end %>
+</div>

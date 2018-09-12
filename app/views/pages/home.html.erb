@@ -1,0 +1,30 @@
+<h1 style="text-align: center">Sign Up</h1>
+<div style="text-align: center;">
+	<button><%= link_to 'Doctor', doctors_path() %></button>
+	<button style="margin-left: 100px;"><%= link_to 'Patient', patients_path() %></button>
+</div>
+<div style="text-align: center; border-style: solid; margin-top: 10px;">
+<div style="display: inline-block; vertical-align: top">
+<% @doctors.each do |d| %>
+<br>
+<%= d.name %><br>
+<%= d.doctor_type %><br>
+<%= d.specialization %><br>
+<%= d.qualification %><br>
+<%= d.years_of_exp %><br>
+<%= d.rating %><br>
+<%= d.total_ratings %><br>
+<% end %>
+</div>
+<div style="display: inline-block; vertical-align: top; margin-left: 300px;">
+<% @patients.each do |p| %>
+<br>
+<%= p.name %><br>
+<%= p.birth_date %><br>
+<%= p.image_loc %><br>
+<%= p.medical_report_loc %><br>
+<%= p.age %><br>
+<%= p.gender %><br>
+<% end %>
+</div>
+</div>

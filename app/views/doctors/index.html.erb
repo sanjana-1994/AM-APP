@@ -1,0 +1,25 @@
+<div style="text-align: center; margin-top: 50px;">
+<%= form_for(@new_doctor) do |f| %>
+NAME: <%= f.text_field :name %><br>
+DOCTOR TYPE: <%= f.text_field :doctor_type %><br>
+SPECIALIZATION: <%= f.text_field :specialization %><br>
+QUALIFICATION <%= f.text_field :qualification %><br>
+YEARS OF EXP. <%= f.number_field :years_of_exp %><br>
+RATING <%= f.number_field :rating %><br>
+TOTAL RATING <%= f.number_field :total_ratings %><br>
+DOCTOR IMAGE: <%= f.file_field :doctor_image %><br><br>
+<%= f.submit "Submit" %>
+<button><%= link_to 'Cancel', root_path() %></button>
+<% end %>
+</div>
+<!-- <br>
+<% @doctors.each do |d| %>
+<br>
+<%= d.name %><br>
+<%= d.doctor_type %><br>
+<%= d.specialization %><br>
+<%= d.qualification %><br>
+<%= d.years_of_exp %><br>
+<%= d.rating %><br>
+<%= d.total_ratings %><br>
+<% end %> -->
