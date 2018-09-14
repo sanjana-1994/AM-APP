@@ -1,4 +1,5 @@
 class DoctorsController < ApplicationController
+  before_action :logged_in_user
   def index
     @new_doctor = Doctor.new
     @doctors = Doctor.order(created_at: :desc).all
@@ -7,7 +8,6 @@ class DoctorsController < ApplicationController
   def create
     @post_params = post_params
     @post_params[:doctor_image] = @post_params[:doctor_image].original_filename
-    puts @post_params
     @doctor = Doctor.new(@post_params)
     if @doctor.save
       redirect_to root_path

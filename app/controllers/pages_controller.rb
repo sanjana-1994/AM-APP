@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :require_user, only: [:index, :show, :search]
   def home
     @doctors = Doctor.order(created_at: :desc).all
     @patients = Patient.order(created_at: :desc).all

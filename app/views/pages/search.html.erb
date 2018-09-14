@@ -1,33 +1,135 @@
+<style>
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+</style>
+
 <%= form_tag(search_path, method: :get) do %>
   <%= text_field_tag :name %>
   <%= submit_tag 'Search' %>
 <% end %>
-<div style="text-align: center; margin-top: 10px;">
-<% @doctors.each do |d| %>
-<br>
-<div style="border-style: solid;">
-<div style="display: inline-block; vertical-align: top;">
-NAME: <%= d.name %><br>
-DOCTOR TYPE: <%= d.doctor_type %><br>
-SPECIALIZATION: <%= d.specialization %><br>
-QUALIFICATION: <%= d.qualification %><br>
-YEARS OF EXP: <%= d.years_of_exp %><br>
-RATING: <%= d.rating %><br>
-TOTAL RATINGS: <%= d.total_ratings %><br>
-</div>
-<div style="display: inline-block; vertical-align: top; margin-left: 100px;">
-<%= image_tag("image1.jpg", size: "100x100", alt: "Doctor Image") %>
-</div>
-<div style="display: inline-block; vertical-align: top; margin-left: 100px; margin-top: 50px;">
-<%= link_to 'Book Now', "https://google.com",html_options = {:class =>"popupscreen"} %>
-</div>
-</div>
-<% end %>
+
+<div style="text-align: center; margin-top: 10px; border-style: solid;">
+
+	<% @doctors.each do |d| %><br>
+	<div style="margin-top:20px;">
+		<div style="display: inline-block; vertical-align: top;">
+			NAME: <%= d.name %><br>
+			DOCTOR TYPE: <%= d.doctor_type %><br>
+			SPECIALIZATION: <%= d.specialization %><br>
+			QUALIFICATION: <%= d.qualification %><br>
+			YEARS OF EXP: <%= d.years_of_exp %><br>
+			RATING: <%= d.rating %><br>
+			TOTAL RATINGS: <%= d.total_ratings %><br>
+		</div>
+		<div style="display: inline-block; vertical-align: top; margin-left: 100px;">
+		<%= image_tag("image1.jpg", size: "100x100", alt: "Doctor Image") %>
+		</div>
+		<div style="display: inline-block; vertical-align: top; margin-left: 100px; margin-top: 50px;">
+			<button id="myBtn">Book Now</button>
+			<div id="myModal" class="modal">
+			  <div class="modal-content">
+			    <div class="modal-header">
+			      <span class="close">&times;</span>
+			      <h2>Book Appointment</h2>
+			    </div>
+			    <div class="modal-body">
+			       <%= form_tag(book_path, method: :get) do %>
+			       <%= hidden_field_tag :doctor_id, d.id %>
+			       <p>Patient Id: <%= number_field_tag :patient_id %></p>
+			       <p>Date and Time: <%= datetime_select("appointment","appointment_date") %></p>
+			       <p><%= submit_tag 'Book' %></p>
+			       <% end %>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	<% end %>
 </div>
 
 <script>
-$('a.popupscreen').on('click', function(e) {
-	window.open(this.href, "myWindow", 'width=800,height=600');
-	window.close();
-});
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 </script>
