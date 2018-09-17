@@ -18,7 +18,7 @@ class PatientsController < ApplicationController
   end
   private
   def post_params
-    params.require(:patient).permit(:name, :password, :birth_date, :image_loc, :medical_report_loc, :age, :gender)
+    params.require(:patient).permit(:name, :password, :birth_date, :image_loc, :medical_report_loc, :age, :gender, :role)
   end 
 
 end

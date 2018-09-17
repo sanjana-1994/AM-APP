@@ -7,6 +7,7 @@ PATIENT IMAGE: <%= f.file_field :image_loc %><br>
 MEDICAL REPORT: <%= f.file_field :medical_report_loc %><br>
 AGE: <%= f.number_field :age %><br>
 GENDER: <%= f.text_field :gender %><br>
+ROLE: <%= f.text_field :role %><br>
 <%= f.submit "Submit" %>
 <button><%= link_to 'Cancel', root_path() %></button>
 <% end %>

@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-  before_action :logged_in_user
+  before_action :require_admin
   def index
     @new_doctor = Doctor.new
     @doctors = Doctor.order(created_at: :desc).all
