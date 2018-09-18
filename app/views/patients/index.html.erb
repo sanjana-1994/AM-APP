@@ -1,7 +1,7 @@
 <div style="text-align: center; margin-top: 50px;">
 <%= form_for(@new_patient) do |f| %>
 NAME: <%= f.text_field :name %><br>
-PASSWORD: <%= f.text_field :password %><br>
+PASSWORD: <%= f.password_field :password %><br>
 BIRTH DATE: <%= f.date_field :birth_date %><br>
 PATIENT IMAGE: <%= f.file_field :image_loc %><br>
 MEDICAL REPORT: <%= f.file_field :medical_report_loc %><br>

@@ -6,7 +6,7 @@ class AppointmentsController < ApplicationController
 	def create
 		@params = Hash.new
 		@params[:doctor_id] = params[:doctor_id]
-		@params[:patient_id] = params[:patient_id]
+		@params[:patient_id] = session[:patient_id]
 		@year = params[:appointment]["appointment_date(1i)"]
 		@month = params[:appointment]["appointment_date(2i)"]
 		@day = params[:appointment]["appointment_date(3i)"]

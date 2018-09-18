@@ -1,6 +1,8 @@
 <h1 style="text-align: center">Doctor v/s Patients List</h1>
 <div style="text-align: center;">
-	<button><%= link_to 'Add Doctor', doctors_path() %></button>
+    <% if current_user.admin? %>
+		<button><%= link_to 'Add Doctor', doctors_path() %></button>
+	<% end %>
 	<button style="margin-left: 100px;"><%= link_to 'Search Doctors', search_path() %></button>
 </div>
 <div style="text-align: center; border-style: solid; margin-top: 10px;">

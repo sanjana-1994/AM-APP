@@ -1,5 +1,5 @@
 <h1> Patient's Login / Admin Login </h1>
-<%= form_for(:session, url: login_path) do |f| %>
+<%= form_for(:auth, url: login_path) do |f| %>
 <%= f.text_field :name, :placeholder => "Name" %> <br><br>
 <%= f.password_field :password, :placeholder => "Password" %> <br><br><br>
 <%= f.submit "Log in", class: "btn-submit" %>

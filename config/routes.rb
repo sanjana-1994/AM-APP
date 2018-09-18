@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root "pages#home"
   get '/search' => 'pages#search'
   get '/book' => 'appointments#create'
-  get '/login' => "sessions#new"
-  post '/login' => "sessions#create"
-  delete 'logout' => 'sessions#destroy'
+  get '/login' => "auth#new"
+  post '/login' => "auth#create"
+  delete 'logout' => 'auth#destroy'
 end
