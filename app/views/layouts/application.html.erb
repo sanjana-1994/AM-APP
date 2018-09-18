@@ -9,7 +9,11 @@
   </head>
 
   <body>
-    <% if current_user %> 
+    <% if current_page?(login_path) %>
+      <ul>
+	    <li><%= link_to "Patient Registeration", '/patients' %></a></li> 
+	  </ul>
+    <% elsif current_user %> 
 	  <ul> 
 	    <li><%= current_user.name %></li> 
 	    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
