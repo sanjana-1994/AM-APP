@@ -9,21 +9,27 @@
   </head>
 
   <body>
-    <% if current_page?(login_path) %>
-      <ul>
-	    <li><%= link_to "Patient Registeration", '/patients' %></a></li> 
-	  </ul>
-    <% elsif current_user %> 
-	  <ul> 
-	    <li><%= current_user.name %></li> 
-	    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
-	  </ul> 
-	<% else %> 
-	  <ul> 
-	    <li><%= link_to "Login", 'login' %></a></li> 
-	    <li><%= link_to "Patient Registeration", '/patients' %></a></li> 
-	  </ul> 
-	<% end %>
+    <div class="nav">
+	    <% if current_page?(login_path) %>
+	      <ul>
+		    <li><%= link_to "Registeration", new_patient_path %></a></li> 
+		  </ul>
+	    <% elsif current_page?(new_patient_path) %>
+	      <ul>
+		    <li><%= link_to "Login", login_path %></a></li> 
+		  </ul>
+	    <% elsif current_user %> 
+		  <ul> 
+		    <li class="username"><%= current_user.name %></li> 
+		    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+		  </ul> 
+		<% else %> 
+		  <ul> 
+		    <li><%= link_to "Login", login_path %></a></li> 
+		    <li><%= link_to "Registeration", new_patient_path %></a></li> 
+		  </ul> 
+		<% end %>
     <%= yield %>
+    </div>
   </body>
 </html>

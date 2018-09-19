@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :patients
   resources :appointments
   get '/doctors/index' => 'doctors#index'
-  get '/patients/index' => 'patients#index'
+  get '/patients/new' => 'patients#new'
   root "pages#home"
   get '/search' => 'pages#search'
   get '/book' => 'appointments#create'

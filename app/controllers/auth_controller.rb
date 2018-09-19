@@ -6,14 +6,18 @@ class AuthController < ApplicationController
     patient = Patient.find_by_name(params[:auth][:name])
 	  if patient && patient.authenticate(params[:auth][:password])
 	    session[:patient_id] = patient.id
-      redirect_to root_path
+      if patient.role == "patient"
+        redirect_to search_path
+      else
+        redirect_to root_path
+      end
 	  else
       redirect_to login_path
 	  end 
   end
 
   def destroy 
-	  session[:patient_id] = nil 
+	  reset_session
 	  redirect_to login_path 
   end
 end

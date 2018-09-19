@@ -1,0 +1,11 @@
+<div style="text-align: center; margin-top: 50px;">
+<%= form_for(new_patient) do |f| %>
+NAME: <%= f.text_field :name, :required => true %><br><br>
+PASSWORD: <%= f.password_field :password, :required => true %><br><br>
+BIRTH DATE: <%= f.date_field :birth_date, :required => true %><br><br>
+GENDER: <%= f.text_field :gender, :required => true %><br><br>
+ROLE: <%= f.select :role, options_for_select([['Patient', 'patient'], ['Admin', 'admin']]), :class => 'select', :required => true %><br><br>
+<%= f.submit "Submit" %>
+<button><%= link_to 'Cancel', root_path() %></button>
+<% end %>
+</div>
