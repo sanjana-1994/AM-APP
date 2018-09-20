@@ -1,59 +1,60 @@
 <br><br>
 <%= form_tag(search_path, method: :get) do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag 'Search' %>
+<%= text_field_tag :search %>
+<%= submit_tag 'Search' %>
 <% end %>
 
 <div style="text-align: center; margin-top: 10px; border-style: solid;">
-
-	<% @doctors.each do |d| %><br>
-	<div style="margin-top:20px;">
-		<div style="display: inline-block; vertical-align: top;">
-			NAME: <%= d.name %><br>
-			DOCTOR TYPE: <%= d.doctor_type %><br>
-			SPECIALIZATION: <%= d.specialization %><br>
-			QUALIFICATION: <%= d.qualification %><br>
-			YEARS OF EXP: <%= d.years_of_exp %><br>
-			RATING: <%= d.rating %><br>
-			TOTAL RATINGS: <%= d.total_ratings %><br>
-		</div>
-		<div style="display: inline-block; vertical-align: top; margin-left: 100px;">
-		<%= image_tag("image1.jpg", size: "100x100", alt: "Doctor Image") %>
-		</div>
-		<div style="display: inline-block; vertical-align: top; margin-left: 100px; margin-top: 50px;">
-			<button id="myBtn">Book Now</button>
-			<div id="myModal" class="modal">
-			  <div class="modal-content">
-			    <div class="modal-header">
-			      <span class="close">&times;</span>
-			      <h2>Book Appointment</h2>
-			    </div>
-			    <div class="modal-body">
-			       <%= form_tag(book_path, method: :get) do %>
-			       <%= hidden_field_tag :doctor_id, d.id %>
-			       <p>Date and Time: <%= datetime_select("appointment","appointment_date") %></p>
-			       <p><%= submit_tag 'Book' %></p>
-			       <% end %>
-			    </div>
-			  </div>
-			</div>
-		</div>
-	<% end %>
+<% @doctors.each do |d| %><br>
+<div style="margin-top:20px;">
+<div style="display: inline-block; vertical-align: top;">
+	NAME: <%= d.name %><br>
+	DOCTOR TYPE: <%= d.doctor_type %><br>
+	SPECIALIZATION: <%= d.specialization %><br>
+	QUALIFICATION: <%= d.qualification %><br>
+	YEARS OF EXP: <%= d.years_of_exp %><br>
+	RATING: <%= d.rating %><br>
+	TOTAL RATINGS: <%= d.total_ratings %><br>
 </div>
-
-<script>
-      var modal = document.getElementById('myModal');
-	  var btn = document.getElementById("myBtn");
-	  var span = document.getElementsByClassName("close")[0];
-	  btn.onclick = function() {
-	    modal.style.display = "block";
-	  }
-	  span.onclick = function() {
-	    modal.style.display = "none";
-	  }
-	  window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	  }
-</script>
+<div style="display: inline-block; vertical-align: top; margin-left: 100px;">
+<%= image_tag("image1.jpg", size: "100x100", alt: "Doctor Image") %>
+</div>
+<% unless current_user.admin? %>
+<div style="display: inline-block; vertical-align: top; margin-left: 100px; margin-top: 50px;">
+	<button id="myBtn<%= d.id %>">Book Now</button>
+	<div id="myModal<%= d.id %>" class="modal">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <span class="close<%= d.id %>">&times;</span>
+	      <h2>Book Appointment</h2>
+	    </div>
+	    <div class="modal-body">
+	       <%= form_tag(book_path, method: :get) do %>
+	       <%= hidden_field_tag :doctor_id, d.id %>
+	       <p>Date and Time: <%= datetime_select("appointment","appointment_date") %></p>
+	       <p><%= submit_tag 'Book' %></p>
+	       <% end %>
+	    </div>
+	  </div>
+	</div>
+	<script>
+		var modal<%= d.id %> = document.getElementById('myModal<%= d.id %>');
+		var btn<%= d.id %> = document.getElementById("myBtn<%= d.id %>");
+		var span<%= d.id %> = document.getElementsByClassName("close<%= d.id %>")[0];
+		btn<%= d.id %>.onclick = function() {
+		modal<%= d.id %>.style.display = "block";
+		}
+		span<%= d.id %>.onclick = function() {
+		modal<%= d.id %>.style.display = "none";
+		}
+		window.onclick = function(event) {
+			if (event.target == modal<%= d.id %>) {
+			    modal<%= d.id %>.style.display = "none";
+			}
+		}
+	</script>
+<% end %>
+</div>
+<% end %>
+</div>
+</div>

@@ -3,7 +3,7 @@ class AuthController < ApplicationController
   end
 
   def create
-    patient = Patient.find_by_name(params[:auth][:name])
+    patient = Patient.find_by_email(params[:auth][:email])
 	  if patient && patient.authenticate(params[:auth][:password])
 	    session[:patient_id] = patient.id
       if patient.role == "patient"

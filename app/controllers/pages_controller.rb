@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
   before_action :require_admin, only: [:home]
   before_action :require_user, only: [:search]
+
   def home
-    @doctors = Doctor.order(created_at: :desc).all
-    @patients = Patient.order(created_at: :desc).all
+    appointments = Appointment.order(created_at: :desc).all
+    render 'home', locals: {appointments: appointments}
   end
 
   def search

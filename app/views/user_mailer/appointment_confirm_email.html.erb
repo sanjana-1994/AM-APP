@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to abc hospital, <%= @appointment.patient.name %></h1>
+    <p>
+      Your appointment has been successfully confirmed with <%= @appointment.doctor.name %> on <%= @appointment.appointment_date %>.<br>
+    </p>
+    <p>Thanks for choosing us, Have a Great Day!</p>
+  </body>
+</html>

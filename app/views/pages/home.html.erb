@@ -1,4 +1,4 @@
-<h1 style="text-align: center">Doctor v/s Patients List</h1>
+<h1 style="text-align: center">Appointments List</h1>
 <div style="text-align: center;">
     <% if current_user.admin? %>
 		<button><%= link_to 'Add Doctor', doctors_path() %></button>
@@ -6,24 +6,32 @@
 	<button style="margin-left: 100px;"><%= link_to 'Search Doctors', search_path() %></button>
 </div>
 <div style="text-align: center; border-style: solid; margin-top: 10px;">
-<div style="display: inline-block; vertical-align: top">
-<% @doctors.each do |d| %>
-<br>
-<%= d.name %><br>
-<%= d.doctor_type %><br>
-<%= d.specialization %><br>
-<%= d.qualification %><br>
-<%= d.years_of_exp %><br>
-<%= d.rating %><br>
-<%= d.total_ratings %><br>
-<% end %>
-</div>
-<div style="display: inline-block; vertical-align: top; margin-left: 300px;">
-<% @patients.each do |p| %>
-<br>
-<%= p.name %><br>
-<%= p.birth_date %><br>
-<%= p.gender %><br>
-<% end %>
-</div>
+	<div style="display: inline-block; vertical-align: top">
+	<table>
+	<thead>
+		<th>Doctor's Name</th>
+		<th>Patient's Name</th>
+		<th>Appointment Date</th>
+		<th>Status</th>
+		<th>Action</th>
+	<thead>
+	<tbody>
+	<% appointments.each do |a| %>
+		<tr>
+			<td><%= a.doctor.name %></td>
+			<td><%= a.patient.name %></td>
+			<td><%= a.appointment_date %></td>
+			<td><%= a.status %></td>
+			<% if a.status == 'pending' %>
+			<%= form_for Appointment.find(a.id), :method => :PUT do |f| %>
+			<td><%= f.submit 'Confirm' %></td>
+			<% end %>
+			<% else %>
+			<td>Confirmed</td>
+			<% end %>
+		<tr>
+	<% end %>
+	<tbody>
+	<table>
+	</div>
 </div>

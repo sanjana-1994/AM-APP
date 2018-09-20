@@ -32,7 +32,7 @@ class PatientsController < ApplicationController
 
   private
   def post_params
-    params.require(:patient).permit(:name, :password, :birth_date, :gender, :role)
+    params.require(:patient).permit(:name, :password, :birth_date, :gender, :role, :email)
   end 
 
 end
