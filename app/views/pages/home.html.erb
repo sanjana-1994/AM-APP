@@ -1,37 +1,57 @@
 <h1 style="text-align: center">Appointments List</h1>
-<div style="text-align: center;">
-    <% if current_user.admin? %>
-		<button><%= link_to 'Add Doctor', doctors_path() %></button>
-	<% end %>
-	<button style="margin-left: 100px;"><%= link_to 'Search Doctors', search_path() %></button>
-</div>
-<div style="text-align: center; border-style: solid; margin-top: 10px;">
+
+<div style="text-align: center; margin-top: 30px;">
 	<div style="display: inline-block; vertical-align: top">
-	<table>
+	<table id="appointment_list" style="margin-top: 30px;" class="table table-striped table-bordered">
 	<thead>
-		<th>Doctor's Name</th>
-		<th>Patient's Name</th>
-		<th>Appointment Date</th>
-		<th>Status</th>
-		<th>Action</th>
+	    <tr>
+			<th>Doctor's Name</th>
+			<th>User's Name</th>
+			<th>Appointment Date</th>
+			<th>Status</th>
+			<th>Action</th>
+		</tr>
 	<thead>
 	<tbody>
-	<% appointments.each do |a| %>
-		<tr>
-			<td><%= a.doctor.name %></td>
-			<td><%= a.patient.name %></td>
-			<td><%= a.appointment_date %></td>
-			<td><%= a.status %></td>
-			<% if a.status == 'pending' %>
-			<%= form_for Appointment.find(a.id), :method => :PUT do |f| %>
-			<td><%= f.submit 'Confirm' %></td>
-			<% end %>
-			<% else %>
-			<td>Confirmed</td>
-			<% end %>
-		<tr>
-	<% end %>
 	<tbody>
 	<table>
 	</div>
 </div>
+<script>
+var url;
+
+function update() { 
+ 	table.ajax.url('/getAppointments').load();
+}
+
+var table = $('#appointment_list').DataTable({
+	"ajax": url,
+	"columns":     [{"data":"doctor.name"},  
+                    {"data":"user.name"},  
+                    {"data":"appointment_date"},
+                    {"data":"status"},{"data":"status"}
+                   ],
+    "columnDefs" : [{ targets : [4],
+                   render : function (data, type, row) {
+      	 		    	url = '<%= update_appointment_path('row.id') %>';
+         				url = url.replace('row.id',""+row.id);
+         				return data == 'pending' ? '<button class="update_button" data-url="'+url+'" id="update_appointment">Confirm</button>' : "Confirmed"
+     				}}]
+});
+
+$("body").on("click",".update_button",function(){
+    url = $(this).attr("data-url");
+    $.ajax({
+       type: "GET",
+       url: url,
+       success: function(response)
+       {
+         table.ajax.url('/getAppointments').load();
+       }
+    });
+});
+
+$(document).ready( function () {
+    table.ajax.url('/getAppointments').load();
+});
+</script>

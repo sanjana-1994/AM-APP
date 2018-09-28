@@ -1,5 +1,5 @@
-class AddRoleToPatients < ActiveRecord::Migration[5.1]
+class AddRoleToUsers < ActiveRecord::Migration[5.1]
   def change
-    add_column :patients, :role, :string
+    add_column :users, :role, :string
   end
 end

@@ -56,4 +56,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Behaviour Testing
 #gem 'rspec', '~> 3.0'
-
+#gem 'jquery-rails'
+#gem 'jquery-datatables'
+#gem 'ajax-datatables-rails'
+#gem 'mini_racer'
+gem 'rails-controller-testing'
+gem 'simplecov', require: false, group: :test

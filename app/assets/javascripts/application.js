@@ -12,6 +12,10 @@
 //
 //= require rails-ujs
 //= require turbolinks
+// require jquery
+// require datatables
 //= require_tree .
-
+// $(document).ready(function() {
+//   $("#appointment_list").dataTable();
+// });
 

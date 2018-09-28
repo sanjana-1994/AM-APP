@@ -1,0 +1,18 @@
+$('.update_appointment').blur(function() {
+    update_ref_field();
+});
+
+function update_ref_field(){
+  var url = '/controller_name/action_name/?ref='+ref_value;
+  $.ajax({
+    type: 'post',
+    url: url,
+    dataType: 'script',
+    error: function(data){
+      alert('Error occurred while updating the record.');
+    }, 
+    success: function(data){
+      alert('Record updated successfully.');
+    });
+    return false;
+}

@@ -24,7 +24,7 @@ name: "Dr. Beta", doctor_type: "Homopathy", specialization: "Public Heath",
 
 p "Created #{Doctor.count} doctors"
 
-Patient.create!(
+User.create!(
 [
 {
 name: "Rama", birth_date: Date.parse('2001-02-03'), image_loc: "/usr/tmp/image1. jpg", medical_report_loc: "/usr/tmp/image2.jpg", age: 18, gender: "female"
@@ -38,4 +38,4 @@ name: "Som", birth_date: Date.parse('2001-08-12'), image_loc: "/usr/tmp/image1. 
 ]
 )
 
-p "Created #{Patient.count} patients"
+p "Created #{User.count} users"

@@ -1,5 +1,5 @@
       invoke  active_record
-      create    db/migrate/20180920045405_add_email_to_patient.rb
+      create    db/migrate/20180920045405_add_email_to_user.rb
 Usage:
   rails new APP_PATH [options]
 

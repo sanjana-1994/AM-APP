@@ -1,0 +1,166 @@
+
+
+
+
+<script>
+window.onload = function(){
+    var pathname = window.location.pathname;
+    console.log("pathname"+pathname);
+	var client = new ClientJS(); // Create A New Client Object
+	var softwareVersion = client.getSoftwareVersion(); // Get ClientJS Software Version
+	console.log( "Software Version="+softwareVersion );
+	var device;
+	var javaVersion;
+	if( client.isMobile() ) { // Check For Mobile Device
+		if( client.isMobileAndroid() ) { // Check For Android
+			device = "Android";
+			console.log("client.isMobileAndroid()="+client.isMobileAndroid());
+		}else if( client.isMobileIOS() ){ // Check For iOS
+			console.log("client.isMobileIOS()"+client.isMobileIOS());
+			device = "IOS";
+		}else{
+			device = "unknown";
+			console.log('Unknown Mobile Device...');
+		}
+	}else{
+		if( client.isJava() ) { // Check If Java Is Installed
+			javaVersion = client.getJavaVersion();
+  			console.log('Java ' + client.getJavaVersion() ); // Get Java Version
+		}else{
+			javaVersion = "No Java"
+			console.log('No Java Installed...');
+		}
+	}
+	var fingerprint = client.getFingerprint(); // Get Client's Fingerprint
+	console.log(fingerprint);
+	var ua = client.getBrowserData().ua;
+	console.log(ua); //User Agent
+	var canvasPrint = client.getCanvasPrint();
+	console.log("canvasprint="+canvasPrint)
+	var fingerprint = client.getCustomFingerprint(ua, canvasPrint);
+	console.log("fingerprint="+fingerprint );
+	var userAgent = client.getUserAgent(); // Get User Agent String
+	console.log( "useragent="+userAgent );
+	var userAgentLowerCase = client.getUserAgentLowerCase(); // Get User Agent String
+	console.log( "userAgentLowerCase="+userAgentLowerCase );
+	var browser = client.getBrowser(); // Get Browser
+	console.log("browser="+browser );
+	var browserVersion = client.getBrowserVersion(); // Get Browser Version
+	console.log( "browserVersion="+browserVersion );
+	var browserMajorVersion = client.getBrowserMajorVersion(); // Get Browser's Major Version
+	console.log( "browserMajorVersion="+browserMajorVersion );
+	var isIE = client.isIE(); // Check For IE
+	console.log("isIE="+isIE );
+	var isChrome = client.isChrome(); // Check For Chrome
+	console.log( "isChrome="+isChrome );
+	var isFirefox = client.isFirefox(); // Check For Firefox
+	console.log( "isFirefox="+isFirefox );
+	var isSafari = client.isSafari(); // Check For Safari
+	console.log("isSafari="+isSafari );
+	var isOpera = client.isOpera(); // Check For isOpera
+	console.log("isOpera="+isOpera );
+	var isMobileSafari = client.isMobileSafari(); // Check For Mobile Safari
+	console.log( "isMobileSafari="+isMobileSafari );
+	var engine = client.getEngine(); // Get Engine
+	console.log("engine="+engine );
+	var engineVersion = client.getEngineVersion(); // Get Engine Version
+	console.log( "engineVersion="+engineVersion );
+	var OS = client.getOS(); // Get OS Version
+	console.log("OS="+OS);
+	var osVersion = client.getOSVersion(); // Get OS Version
+	console.log("osVersion="+osVersion );
+	var isWindows = client.isWindows(); // Check For Windows
+	console.log("isWindows="+isWindows );
+	var isMac = client.isMac(); // Check For Mac
+	console.log("isMac="+isMac );
+	var isLinux = client.isLinux(); // Check For Linu
+	console.log( "isLinux="+isLinux );
+	var isUbuntu = client.isUbuntu(); // Check For Ubuntu
+	console.log( "isUbuntu="+isUbuntu );
+	var isSolaris = client.isSolaris(); // Check For Solaris
+	console.log( "isSolaris="+isSolaris );
+	var device = client.getDevice(); // Get Device
+	console.log( "device="+device );
+	var deviceType = client.getDeviceType(); // Get Device Type
+	console.log( "deviceType="+deviceType );
+	var deviceVendor = client.getDeviceVendor(); // Get Device Vendor
+	console.log( "deviceVendor="+deviceVendor );
+	var CPU = client.getCPU(); // Get CPU Architecture
+	console.log("CPU="+CPU );
+	var isMobile = client.isMobile(); // Check For Mobile
+	console.log( "isMobile="+isMobile );
+	var isMobileMajor = client.isMobileMajor(); // Check For Mobile Major
+	console.log( "isMobileMajor="+isMobileMajor );
+	var isMobileAndroid = client.isMobileAndroid(); // Check For Mobile Androi
+	console.log("isMobileAndroid="+ isMobileAndroid );
+	var isMobileOpera = client.isMobileOpera(); // Check For Mobile Opera
+	console.log( "isMobileOpera="+isMobileOpera );
+	var isMobileWindows = client.isMobileWindows(); // Check For Mobile Windows
+	console.log( "isMobileWindows="+isMobileWindows );
+	var isMobileBlackBerry = client.isMobileBlackBerry(); // Check For Mobile Blackberry
+	console.log( "isMobileBlackBerry="+isMobileBlackBerry );
+	var isMobileIOS = client.isMobileIOS(); // Check For Mobile iOS
+	console.log( "isMobileIOS="+isMobileIOS );
+	var isIphone = client.isIphone(); // Check For iPhone
+	console.log( "isIphone="+isIphone );
+	var isIpad = client.isIpad(); // Check For iPad
+	console.log( "isIpad="+isIpad );
+    var isIpod = client.isIpod(); // Check For iPod
+	console.log( "isIpod="+isIpod );
+    var screenPrint = client.getScreenPrint(); // Get Screen Print
+	console.log( "screenPrint="+screenPrint );
+	var colorDepth = client.getColorDepth(); // Get Color Depth
+	console.log("colorDepth"+colorDepth);
+	var currentResolution = client.getCurrentResolution(); // Get Current Resolution
+	console.log("currentResolution"+currentResolution);
+	var availableResolution = client.getAvailableResolution(); // Get Available Resolution
+	console.log( "availableResolution"+availableResolution );
+	var deviceXDPI = client.getDeviceXDPI(); // Get Device XDPI
+	console.log( "deviceXDPI"+deviceXDPI );
+	var deviceYDPI = client.getDeviceYDPI(); // Get Device YDPI
+	console.log( "deviceYDPI"+deviceYDPI );
+	var plugins = client.getPlugins(); // Get Plugins
+	console.log( "plugins"+plugins );
+	var isJava = client.isJava(); // Check For Java
+	console.log( "isJava"+isJava );
+	var isFlash = client.isFlash(); // Check For Flash
+	console.log( "isFlash"+isFlash );
+	var flashVersion = client.getFlashVersion(); // GET Flash Version
+	console.log( "flashVersion"+flashVersion );
+	var isSilverlight = client.isSilverlight(); // Check For Silverlight
+	console.log( "isSilverlight"+isSilverlight );
+	var silverlightVersion = client.getSilverlightVersion(); // GET Silverlight Version
+	console.log( "silverlightVersion"+silverlightVersion );
+	var isMimeTypes = client.isMimeTypes(); // Check For Mime Types
+	console.log( "isMimeTypes"+isMimeTypes );
+	var mimeTypes = client.getMimeTypes(); // Get Mime Types
+	console.log( "mimeTypes"+mimeTypes );
+	var font = "Times New Roman"; // Set Font String
+	var isFont = client.isFont(font); // Check For A Font
+	console.log( "checking if a font is installed or not ="+isFont );
+	var fonts = client.getFonts(); // Get Fonts
+	console.log( "fonts"+fonts );
+	var isLocalStorage = client.isLocalStorage(); // Check For Local Storage
+	console.log( "isLocalStorage"+isLocalStorage );
+	var isSessionStorage = client.isSessionStorage(); // Check For Session Storage
+	console.log( "isSessionStorage"+isSessionStorage );
+	var isCookie = client.isCookie(); // Check For Cookies
+	console.log( "isCookie"+isCookie );
+	var timeZone = client.getTimeZone(); // Get Time Zone
+	console.log( "timeZone"+timeZone );
+	var language = client.getLanguage(); // Get User Language
+	console.log( "language"+language );
+	//var systemLanguage = client.SystemLanguage(); // Get System Language
+	//console.log( "systemLanguage"+systemLanguage );
+	var isCanvas = client.isCanvas(); // Check For The Canvas Element
+	console.log( "isCanvas"+isCanvas );
+	var canvasPrint = client.getCanvasPrint(); // Get Canvas Print
+	console.log( "canvasPrint"+canvasPrint );
+
+
+
+
+	
+	document.getElementById("client").innerHTML = pathname;
+}
+</script>

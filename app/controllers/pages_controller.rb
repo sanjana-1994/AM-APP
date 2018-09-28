@@ -1,10 +1,15 @@
+require 'json'
 class PagesController < ApplicationController
+  before_action :require_user, only: [:search, :home]
   before_action :require_admin, only: [:home]
-  before_action :require_user, only: [:search]
+  
+  def getAppointments
+    appointments = Appointment.order(created_at: :desc).joins(:doctor).joins(:user).all
+    hash_response = {:data => appointments}
+    render :json => hash_response.to_json(:include=>[:doctor, :user])
+  end
 
   def home
-    appointments = Appointment.order(created_at: :desc).all
-    render 'home', locals: {appointments: appointments}
   end
 
   def search
