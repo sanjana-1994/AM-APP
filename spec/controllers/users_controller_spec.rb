@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, 'users#new & users#create' do
+RSpec.describe UsersController, 'Checking Registeration process - users#new & users#create' do
   context "When testing the UsersController class instance method new and create for valid case" do 
     it "if registeration page is accessed and data are all correct, if user is patient, it should redirect the page to search page" do
       get :new
       expect(response.status).to eq(200)
       expect(response).to render_template("new")
       expect(response).to be_successful
-      post :create, :params =>{user: {name: "SanjuDas", password: "sanju", birth_date: "1994-09-21", gender: "female", email: "sanju@gmail.com", role: "patient"}}
+      post :create, :params =>{user: {name: "ABCD", password: "XYZ", birth_date: "1994-09-21", gender: "female", email: "sanju@gmail.com", role: "patient"}}
       expect(response).to redirect_to(search_path)
     end
     it "if registeration page is accessed and data are all correct, if user is admin, it should redirect the page to root page" do
@@ -15,8 +15,28 @@ RSpec.describe UsersController, 'users#new & users#create' do
       expect(response.status).to eq(200)
       expect(response).to render_template("new")
       expect(response).to be_successful
-      post :create, :params =>{user: {name: "SanjuDas", password: "sanju", birth_date: "1994-09-21", gender: "female", email: "sanju@gmail.com", role: "admin"}}
+      post :create, :params =>{user: {name: "ABCD", password: "XYZ", birth_date: "1994-09-21", gender: "female", email: "sanju@gmail.com", role: "admin"}}
       expect(response).to redirect_to(root_path)
+    end   
+  end
+
+
+  context "When testing the UsersController class instance method new and create for invalid case" do 
+    it "if registeration page is accessed and data are blank, if email is invalid, it should redirect the page to login page" do
+      get :new
+      expect(response.status).to eq(200)
+      expect(response).to render_template("new")
+      expect(response).to be_successful
+      post :create, :params =>{user: {name: "Sanjana", password: "sanju", birth_date: "1994-09-21", gender: "female", email: "", role: "patient"}}
+      expect(response).to redirect_to(login_path)
+    end
+    it "if registeration page is accessed and data are blank, if password is blank, it should redirect the page to login page" do
+      get :new
+      expect(response.status).to eq(200)
+      expect(response).to render_template("new")
+      expect(response).to be_successful
+      post :create, :params =>{user: {name: "SanjuDas", password: "", birth_date: "1994-09-21", gender: "female", email: "sanju@gmail.com", role: "admin"}}
+      expect(response).to redirect_to(login_path)
     end   
   end
 end
