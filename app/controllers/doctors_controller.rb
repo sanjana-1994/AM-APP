@@ -6,17 +6,17 @@ class DoctorsController < ApplicationController
   end
 
   def create
-    @post_params = post_params
-    @post_params[:doctor_image] = @post_params[:doctor_image].original_filename
-    @doctor = Doctor.new(@post_params)
-    if @doctor.save
+    # @post_params = post_params
+    # @post_params[:doctor_image] = @post_params[:doctor_image].original_filename
+    doctor = Doctor.new(post_params)
+    if doctor.save
       redirect_to root_path
     end
   end
 
   private
   def post_params
-    params.require(:doctor).permit(:name, :doctor_type, :specialization, :qualification, :years_of_exp, :rating, :total_ratings, :doctor_image)
+    params.require(:doctor).permit(:name, :doctor_type, :specialization, :qualification, :years_of_exp, :rating, :total_ratings)
   end
  
 end
